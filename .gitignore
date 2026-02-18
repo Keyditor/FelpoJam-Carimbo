@@ -1,0 +1,21 @@
+# Godot 4
+.godot/
+.import/
+.export/
+export_presets.cfg
+
+# Build files
+*.exe
+*.apk
+*.zip
+*.app
+
+# C#
+.mono/
+bin/
+obj/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
