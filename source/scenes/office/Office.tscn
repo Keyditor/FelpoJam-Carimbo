@@ -27,6 +27,9 @@ data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_j6fj6"]
 data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_d5yd0"]
+points = PackedVector3Array(-5, 0, -1.7, -5, 0, 1.5, -5, 2.4, -1.7, 5, 0, -1.7, -5, 2.4, 1.5, 5, 0, 1.5, 5, 2.4, -1.7, 5, 2.4, 1.5)
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_7172d"]
 height = 1.9999999
 
@@ -35,7 +38,7 @@ height = 1.9999999
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7m821"]
 render_priority = 0
 shader = ExtResource("3_d5yd0")
-shader_parameter/pixel_size = 8.0
+shader_parameter/pixel_size = 6.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_omil7"]
 material = SubResource("ShaderMaterial_7m821")
@@ -108,6 +111,11 @@ spot_angle = 82.69
 [node name="SimpleDesk" type="MeshInstance3D" parent="." unique_id=1086693309]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.4801626, 0, -0.009351492)
 mesh = ExtResource("1_l84js")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SimpleDesk" unique_id=801792593]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SimpleDesk/StaticBody3D" unique_id=2107584217]
+shape = SubResource("ConvexPolygonShape3D_d5yd0")
 
 [node name="Player" type="CharacterBody3D" parent="." unique_id=1027673665]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.32511878, 0)
