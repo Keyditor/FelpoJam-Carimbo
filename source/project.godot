@@ -19,9 +19,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 GAME="*uid://bydxtt1h6f671"
-
-[autoload]
-
 Data="*uid://rcvgswykc4fx"
 Enums="*uid://c5lj1agbxrkx2"
 
