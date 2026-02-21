@@ -1,5 +1,6 @@
 extends CharacterBody3D
 @onready var cam = $Head/Camera3D
+@onready var render2d = $CanvasLayer
 @onready var head = $Head
 @onready var useRange = $Head/Camera3D/RayCast3D
 
@@ -23,20 +24,31 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and not GAME.on_2d:
 		velocity.y = JUMP_VELOCITY
 	if Input.is_action_just_pressed("pause"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	if Input.is_action_just_pressed("pause"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	if Input.is_action_just_pressed("action"):
+	if Input.is_action_just_pressed("action") and not GAME.on_2d:
 		var target = useRange.get_collider()
 		if target:
 			print(target.name)
+		if target and target.has_method("use"):
+			print("has use")
+			var cena_2d:PackedScene = target.use()[0]
+			var action_type = target.use()[1]
+			print("Action: ",action_type)
+			if action_type == "cena":
+				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+				var overlay = cena_2d.instantiate()
+				render2d.add_child(overlay)
+				GAME.on_2d = true
+		else: print("no use")
 		
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
+	if direction and not GAME.on_2d:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:
@@ -59,7 +71,7 @@ func _physics_process(delta: float) -> void:
 
 func _unhandled_input(event):
 	# Verifica se a entrada é um movimento do mouse
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and not GAME.on_2d:
 		# Rotação horizontal: rotaciona o corpo inteiro no eixo Y
 		rotate_y(-event.relative.x * camSense)
 		

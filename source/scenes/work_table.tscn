@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://db3qqbnandkyn"]
 
-[ext_resource type="PackedScene" uid="uid://det5l3ly1anns" path="res://scenes/objects/package.tscn" id="1_62i00"]
-[ext_resource type="Texture2D" uid="uid://bm4mule7co870" path="res://assets/testeOffice/table.png" id="1_m0cos"]
-[ext_resource type="PackedScene" uid="uid://dymbuj6xarucr" path="res://scenes/objects/stamp.tscn" id="2_7idc7"]
-[ext_resource type="PackedScene" uid="uid://exkiiwlxhri3" path="res://scenes/objects/conveyor.tscn" id="4_m0cos"]
-[ext_resource type="Texture2D" uid="uid://dcoymbj3xqmu" path="res://assets/folhaespadasaojorgecu.png" id="5_oybn5"]
-[ext_resource type="Script" uid="uid://b1l7cf83ax6uy" path="res://scripts/camera.gd" id="6_oeah5"]
+[ext_resource type="Script" uid="uid://bqya2r6h8v17o" path="res://scripts/work_table.gd" id="1_n46fc"]
+[ext_resource type="Texture2D" uid="uid://bm4mule7co870" path="res://assets/testeOffice/table.png" id="2_vyfnv"]
+[ext_resource type="PackedScene" uid="uid://exkiiwlxhri3" path="res://scenes/objects/conveyor.tscn" id="3_02l05"]
+[ext_resource type="PackedScene" uid="uid://det5l3ly1anns" path="res://scenes/objects/package.tscn" id="4_tx0s2"]
+[ext_resource type="PackedScene" uid="uid://dymbuj6xarucr" path="res://scenes/objects/stamp.tscn" id="5_w7jxw"]
+[ext_resource type="Texture2D" uid="uid://dcoymbj3xqmu" path="res://assets/folhaespadasaojorgecu.png" id="6_peth1"]
+[ext_resource type="Script" uid="uid://b1l7cf83ax6uy" path="res://scripts/camera.gd" id="7_7p044"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_62i00"]
 size = Vector2(20, 610)
@@ -18,6 +19,7 @@ size = Vector2(20, 1906)
 
 [node name="WorkTable" type="Node2D" unique_id=525587958]
 texture_filter = 1
+script = ExtResource("1_n46fc")
 
 [node name="Table" type="Node2D" parent="." unique_id=1756185794]
 
@@ -53,33 +55,33 @@ shape = SubResource("RectangleShape2D_vkig8")
 z_index = -1
 position = Vector2(958, 415)
 scale = Vector2(19, 19)
-texture = ExtResource("1_m0cos")
+texture = ExtResource("2_vyfnv")
 
 [node name="Conveyors" type="Node2D" parent="." unique_id=522650683]
 position = Vector2(185, -154.68236)
 
-[node name="Conveyor" parent="Conveyors" unique_id=1039227752 instance=ExtResource("4_m0cos")]
+[node name="Conveyor" parent="Conveyors" unique_id=1039227752 instance=ExtResource("3_02l05")]
 position = Vector2(-3, -0.3176422)
 orientation = 1
 
-[node name="Conveyor2" parent="Conveyors" unique_id=94246486 instance=ExtResource("4_m0cos")]
+[node name="Conveyor2" parent="Conveyors" unique_id=94246486 instance=ExtResource("3_02l05")]
 position = Vector2(1600, -0.3176422)
 
-[node name="Package" parent="." unique_id=1467660884 instance=ExtResource("1_62i00")]
+[node name="Package" parent="." unique_id=1467660884 instance=ExtResource("4_tx0s2")]
 position = Vector2(760, 191)
 
-[node name="Package2" parent="." unique_id=1470897021 instance=ExtResource("1_62i00")]
+[node name="Package2" parent="." unique_id=1470897021 instance=ExtResource("4_tx0s2")]
 position = Vector2(152, -6)
 mail = 1
 
-[node name="Package3" parent="." unique_id=439797199 instance=ExtResource("1_62i00")]
+[node name="Package3" parent="." unique_id=439797199 instance=ExtResource("4_tx0s2")]
 position = Vector2(802, 499)
 mail = 2
 
-[node name="GoodStamp" parent="." unique_id=1567015258 instance=ExtResource("2_7idc7")]
+[node name="GoodStamp" parent="." unique_id=1567015258 instance=ExtResource("5_w7jxw")]
 position = Vector2(1307, 274)
 
-[node name="BadStamp2" parent="." unique_id=1069247919 instance=ExtResource("2_7idc7")]
+[node name="BadStamp2" parent="." unique_id=1069247919 instance=ExtResource("5_w7jxw")]
 modulate = Color(1, 0.22745098, 1, 1)
 position = Vector2(1144, 274)
 stamp_mark_kind = 1
@@ -87,8 +89,8 @@ stamp_mark_kind = 1
 [node name="Folhaespadasaojorgecu" type="Sprite2D" parent="." unique_id=459168739]
 position = Vector2(1418, 164)
 scale = Vector2(18, 18)
-texture = ExtResource("5_oybn5")
+texture = ExtResource("6_peth1")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1043786255]
 position = Vector2(959, 538)
-script = ExtResource("6_oeah5")
+script = ExtResource("7_7p044")
