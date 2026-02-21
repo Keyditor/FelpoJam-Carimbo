@@ -1,6 +1,6 @@
 extends CharacterBody3D
 @onready var cam = $Head/Camera3D
-@onready var render2d = $CanvasLayer
+@onready var render2d = $CanvasLayer/SubViewportContainer/SubViewport
 @onready var head = $Head
 @onready var useRange = $Head/Camera3D/RayCast3D
 
@@ -43,8 +43,11 @@ func _physics_process(delta: float) -> void:
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 				var overlay = cena_2d.instantiate()
 				render2d.add_child(overlay)
+				render2d.get_parent().visible = true # Torna o SubViewportContainer visível
 				GAME.on_2d = true
-		else: print("no use")
+		else: 
+			print("no use")
+			
 		
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
