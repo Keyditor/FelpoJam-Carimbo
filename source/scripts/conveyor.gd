@@ -25,10 +25,9 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	body.move_to_position(current_orientation_point.global_position)
+	body.move_to_position(orientation)
 
 
 
 func _on_body_exited(body: Node2D) -> void:
-	print("Saiu")
 	body.stop_moving()

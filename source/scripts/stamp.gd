@@ -27,7 +27,6 @@ func _on_button_button_up() -> void:
 
 
 func _on_press_stamp_button_down() -> void:
-	print("Pressionou o carimbo")
 	var stamp_mark = stamp_mark_load.instantiate()
 	var object_hited = point_hits_object(global_position)
 	set_stamp_mark(stamp_mark, object_hited, global_position, stamp_mark_kind)
@@ -48,7 +47,6 @@ func set_stamp_mark(mark: Node2D, parent_object: Node2D, pos: Vector2, StampMark
 		# Verificar se o objeto já foi carimbado e se sim, o carimbo é igual ao que está sendo feito?
 		elif object_stamp == StampMarkKind:
 			parent_object.current_mail[parent_object.mail]["is_stamped"] = StampMarkKind
-			print("Entrou no caminho de ser o mesmo")
 		else:
 			parent_object.current_mail[parent_object.mail]["is_stamped"] = Enum.StampMarks.Invalid
 
