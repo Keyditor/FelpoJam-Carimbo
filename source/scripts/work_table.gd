@@ -9,9 +9,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("down"):
-		get_tree().paused = false
-		queue_free()
+	if Input.is_action_just_pressed("down") and not GAME.on_dialog:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		GAME.on_2d = false
 		pass

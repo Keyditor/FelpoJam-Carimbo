@@ -4,6 +4,8 @@ extends CharacterBody3D
 @onready var head = $Head
 @onready var useRange = $Head/Camera3D/RayCast3D
 
+var overlays := {}  # dicionário para guardar instâncias
+
 @export var bob_freq = 2.0  # Frequência bobbing(velocidade do balanço)
 @export var bob_amp = 0.08  # Amplitude bobbing(força/altura do balanço)
 var t_bob = 0.0             # Acumulador de tempo contínuo
@@ -17,18 +19,21 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta: float) -> void:
+	#Verifica saida de cena 2d para torna-la invisivel.
+	if not GAME.on_2d:
+		for i in overlays:
+			print(i)
+			close_overlay(i)
 	# Add the gravity.
-	
-	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and not GAME.on_2d:
 		velocity.y = JUMP_VELOCITY
-	if Input.is_action_just_pressed("pause"):
+	if Input.is_action_just_pressed("pause") and not GAME.on_2d:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	if Input.is_action_just_pressed("pause"):
+	if Input.is_action_just_pressed("pause") and not GAME.on_2d:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if Input.is_action_just_pressed("action") and not GAME.on_2d:
 		var target = useRange.get_collider()
@@ -41,10 +46,7 @@ func _physics_process(delta: float) -> void:
 			print("Action: ",action_type)
 			if action_type == "cena":
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-				var overlay = cena_2d.instantiate()
-				render2d.add_child(overlay)
-				render2d.get_parent().visible = true # Torna o SubViewportContainer visível
-				GAME.on_2d = true
+				open_overlay(cena_2d)
 		else: 
 			print("no use")
 			
@@ -71,6 +73,18 @@ func _physics_process(delta: float) -> void:
 		t_bob = 0.0 
 	cam.transform.origin = cam.transform.origin.lerp(target_cam_pos, delta * 10.0)
 
+func open_overlay(packed_scene: PackedScene): #Instancia e torna a cena 2d visível
+	if not overlays.has(packed_scene):
+		var instancia = packed_scene.instantiate()
+		render2d.add_child(instancia)
+		render2d.get_parent().visible = true # Torna o SubViewportContainer visível
+		GAME.on_2d = true
+	else: overlays[packed_scene].show()
+
+func close_overlay(packed_scene: PackedScene): #Torna a cena 2d invisivel
+	if overlays.has(packed_scene):
+		overlays[packed_scene].hide()
+		
 
 func _unhandled_input(event):
 	# Verifica se a entrada é um movimento do mouse

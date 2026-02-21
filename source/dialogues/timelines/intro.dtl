@@ -1,3 +1,5 @@
-join player center
-player: Teste bem testado, já que tudo precisa ser testado
-player: Outro aqui pra teste também
+set {GAME.on_dialog} = "true"
+join player left
+player: Teste bem testado, já que tudo precisa ser testado #id:11
+player: Outro aqui pra teste também #id:12
+set {GAME.on_dialog} = "false"
