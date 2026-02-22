@@ -16,7 +16,7 @@ size = Vector2(20, 1340)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vkig8"]
 size = Vector2(20, 1906)
 
-[node name="WorkTable" type="Node2D" unique_id=525587958]
+[node name="WorkTable" type="Node2D" unique_id=525587958 groups=["work_table"]]
 texture_filter = 1
 script = ExtResource("1_n46fc")
 
