@@ -4,8 +4,10 @@
 [ext_resource type="Resource" uid="uid://dw3vrddqa4p5q" path="res://resources/Letters/letter1.tres" id="2_imqj4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5yo0u"]
+size = Vector2(127, 127)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b613k"]
+size = Vector2(127, 127)
 
 [node name="Mail" type="RigidBody2D" unique_id=1467660884 groups=["objects"]]
 z_index = 1

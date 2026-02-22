@@ -14,7 +14,7 @@ var mail_roof: float = 200
 var conveyor_orientation: Enum.ConveyorOrientation
 
 @onready var sprite_2d: Sprite2D = $Area2D/Sprite2D
-@onready var collision_shape_2d: CollisionShape2D = $Area2D/CollisionShape2D
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var collision_shape_2d_mouse: CollisionShape2D = $Area2D/CollisionShape2D
 
 var is_sent: bool = false
@@ -41,14 +41,6 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 
 func _physics_process(delta: float) -> void:
 	if is_moving:
-		#var direction = target_position - global_position
-		#
-		#if linear_velocity.length() < 10:
-			#is_moving = false
-			#linear_velocity = Vector2.ZERO
-		#else:
-			#apply_central_force(direction.normalized() * force_strength)
-			
 		if conveyor_orientation == Enum.ConveyorOrientation.Asc and is_holding == false:
 			linear_velocity = Vector2.UP * conveyor_speed
 		elif conveyor_orientation == Enum.ConveyorOrientation.Desc and is_holding == false: 
