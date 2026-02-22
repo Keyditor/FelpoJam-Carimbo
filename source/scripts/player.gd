@@ -1,6 +1,6 @@
 extends CharacterBody3D
 @onready var cam = $Head/Camera3D
-@onready var render2d = $CanvasLayer/SubViewportContainer/SubViewport
+@onready var render2d = $CanvasLayer
 @onready var head = $Head
 @onready var useRange = $Head/Camera3D/RayCast3D
 
@@ -83,7 +83,7 @@ func open_overlay(id:String,packed_scene: PackedScene): #Instancia e torna a cen
 		overlays[id] = instancia
 		render2d.add_child(overlays[id])
 	else: overlays[id].show()
-	render2d.get_parent().visible = true # Torna o SubViewportContainer visível
+	render2d.visible = true # Torna o SubViewportContainer visível
 	GAME.on_2d = true
 
 func close_overlay(id: String): #Torna a cena 2d invisivel
@@ -92,7 +92,7 @@ func close_overlay(id: String): #Torna a cena 2d invisivel
 		print("encontrou cena")
 		overlays[id].hide()
 	GAME.on_2d = false
-	render2d.get_parent().visible = false # Torna o SubViewportContainer invisível
+	render2d.visible = false # Torna o SubViewportContainer invisível
 
 func _unhandled_input(event):
 	# Verifica se a entrada é um movimento do mouse

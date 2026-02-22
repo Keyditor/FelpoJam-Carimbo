@@ -158,19 +158,7 @@ transform = Transform3D(2.005, 0, 0, 0, 2.83, 0, 0, 0, 2.005, 0, 3.065472, 0)
 mesh = SubResource("CapsuleMesh_d5yd0")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Player" unique_id=1249565369]
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Player/CanvasLayer" unique_id=1996032055]
 visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="SubViewport" type="SubViewport" parent="Player/CanvasLayer/SubViewportContainer" unique_id=1144147322]
-handle_input_locally = false
-size = Vector2i(1920, 1080)
-render_target_update_mode = 0
 
 [node name="Head" type="Node3D" parent="Player" unique_id=792276747]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.9887676, 0)
